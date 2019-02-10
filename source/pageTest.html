@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<!-- Required meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel='stylesheet' href='https://cdn.oesmith.co.uk/morris-0.5.1.css'>
+  
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.0/morris.min.js'></script>
+
+  
+
+    <title>WaterMonitor</title>
+
+    <style type="text/css">
+      #area-chart,
+      #line-chart,
+      #bar-chart,
+      #stacked,
+      #pie-chart{
+        min-height: 250px;
+      }
+     
+    </style>
+    
+</head>
+
+<body>
+    <div class="container">
+        <h3 class="text-primary text-center"> Smart Water Monitoring </h3>
+        <div class="row">
+    
+            <div class="col-sm-6 text-center">
+               <label class="label label-success">Daily Consumption</label>
+              <div id="line-chart"></div>
+            </div>
+            <div  class="col-sm-6 text-center">
+               <label class="label label-success">Monthly Consumption</label>
+              <div id="bar-chart" ></div>
+            </div>
+            <div class="col-sm-6 col-sm-offset-3 text-center">
+               <label class="label label-success">Weekly Consumption</label>
+              <div id="pie-chart" ></div>
+            </div>
+          
+        </div>
+
+    </div>
+    <script type="text/javascript">
+      
+  /*
+      fetch("http://localhost:3000/data")
+      .then((resp) => resp.json())
+      .then ((data)=> {
+          $config = {
+            data: data,
+            xkey: 'y',
+            ykeys: ['a'],
+            labels: ['Water Consumed in L'],
+            fillOpacity: 0.6,
+            hideHover: 'auto',
+            behaveLikeLine: true,
+            resize: true,
+            pointFillColors:['#ffffff'],
+            pointStrokeColors: ['black'],
+            lineColors:['gray','red']
+          }
+          $config.element = 'bar-chart';
+          Morris.Bar($config);
+          
+
+      });
+*/
+  	Morris.Bar({
+ 	element: 'bar-chart',
+  	data: [
+    		{ y: 'Jan', a: 90},
+    		{ y: 'Feb', a: 105},
+    		{ y: 'Mar', a: 150},
+    		{ y: 'Apr', a: 195},
+    		{ y: 'May', a: 190},
+    		{ y: 'Jun', a: 175},
+    		{ y: 'Jul', a: 170},
+    		{ y: 'Aug', a: 130},
+    		{ y: 'Sep', a: 160},
+    		{ y: 'Oct', a: 110},
+    		{ y: 'Nov', a: 120},
+    		{ y: 'Dec', a: 100}
+  		],
+  	xkey: 'y',
+  	ykeys: ['a'],
+	labels: ['Water Consumed in L'],
+  	horizontal: true
+	});
+
+
+	  Morris.Line({
+            // ID of the element in which to draw the chart.
+            element: 'line-chart',
+            // Chart data records -- each entry in this array corresponds to a point on
+            // the chart.
+            data: [
+              { time: '2018-07-29 00:00', value: 60 },
+              { time: '2018-07-29 06:00', value: 30 },
+              { time: '2018-07-29 10:00', value: 70 },
+              { time: '2018-07-29 15:00', value: 30 },
+              { time: '2018-07-29 22:00', value: 45 }
+              
+            ],
+            // The name of the data record attribute that contains x-values.
+            xkey: 'time',
+            // A list of names of data record attributes that contain y-values.
+            ykeys: ['value'],
+            // Labels for the ykeys -- will be displayed when you hover over the
+            // chart.
+            labels: ['Volume in L'],
+
+            lineColors:['red']
+          });
+      
+      Morris.Donut({
+        element: 'pie-chart',
+        data: [
+          {label: "Week1", value: 30},
+          {label: "Week2", value: 15},
+          {label: "Week3", value: 45},
+          {label: "Week4", value: 10}
+        ],
+        colors: ['Orange']
+  });
+
+    </script>
+</body>
+</html>
